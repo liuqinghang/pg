@@ -25,6 +25,9 @@
                             <div v-for="(item,index) in this.singleList" :key="index" class="left_box">
                                 <span class="id_style">{{item.questionId}} </span>
                                 <span class="content_style">{{item.content}}</span>
+                                <el-button @click="showpDetail(item)" type="text">详情</el-button>
+                                <el-button @click="deleteQuestion(item)" type="text">删除</el-button>
+                                <el-button @click="replaceQuestion(item)" type="text">替换</el-button>
                             </div>
                         </el-collapse-item>
                         <el-collapse-item name="2">
@@ -34,6 +37,9 @@
                             <div v-for="(item,index) in this.multiList" :key="index" class="left_box">
                                 <span class="id_style">{{item.questionId}} </span>
                                 <span class="content_style">{{item.content}}</span>
+                                <el-button @click="showpDetail(item)" type="text">详情</el-button>
+                                <el-button @click="deleteQuestion(item)" type="text">删除</el-button>
+                                <el-button @click="replaceQuestion(item)" type="text">替换</el-button>
                             </div>
                         </el-collapse-item>
                         <el-collapse-item name="3">
@@ -43,6 +49,9 @@
                             <div v-for="(item,index) in this.blankList" :key="index" class="left_box">
                                 <span class="id_style">{{item.questionId}} </span>
                                 <span class="content_style">{{item.content}}</span>
+                                <el-button @click="showpDetail(item)" type="text">详情</el-button>
+                                <el-button @click="deleteQuestion(item)" type="text">删除</el-button>
+                                <el-button @click="replaceQuestion(item)" type="text">替换</el-button>
                             </div>
                         </el-collapse-item>
                         <el-collapse-item name="4">
@@ -52,6 +61,9 @@
                             <div v-for="(item,index) in this.shortQuestionList" :key="index" class="left_box">
                                 <span class="id_style">{{item.questionId}} </span>
                                 <span class="content_style">{{item.content}}</span>
+                                <el-button @click="showpDetail(item)" type="text">详情</el-button>
+                                <el-button @click="deleteQuestion(item)" type="text">删除</el-button>
+                                <el-button @click="replaceQuestion(item)" type="text">替换</el-button>
                             </div>
                         </el-collapse-item>
                         <el-collapse-item name="5">
@@ -61,10 +73,16 @@
                             <div v-for="(item,index) in this.questionList" :key="index" class="left_box">
                                 <span class="id_style">{{item.questionId}} </span>
                                 <span class="content_style">{{item.content}}</span>
+                                <el-button @click="showpDetail(item)" type="text">详情</el-button>
+                                <el-button @click="deleteQuestion(item)" type="text">删除</el-button>
+                                <el-button @click="replaceQuestion(item)" type="text">替换</el-button>
                             </div>
                         </el-collapse-item>
                     </el-collapse>
                 </div>
+            <el-form-item>
+                <el-button @click="savePaper">保存预览</el-button>
+            </el-form-item>
         </el-form>
     </div>
     <div class="div_main" style="background: #d1ddf8; height: 100%;">
@@ -191,6 +209,39 @@
                 </div>
             </el-dialog>
 
+            <el-dialog title="试题详情"
+                       v-model="pDetailShow">
+                <el-form :model="pCurrentQuestion">
+                    <el-form-item label="试题内容">
+                        <!--                  <el-input v-model="currentQuestion.content"/>-->
+                        <el-input v-model="pCurrentQuestion.content"></el-input>
+                    </el-form-item>
+                    <el-form-item label="试题类型">
+                        <!--                  <el-input v-model="currentQuestion.typeName"/>-->
+                        {{pCurrentQuestion.typeName}}
+                    </el-form-item>
+                    <el-form-item label="科目">{{pCurrentQuestion.subject}}</el-form-item>
+                    <el-form-item label="章节">{{pCurrentQuestion.chapter}}</el-form-item>
+                    <el-form-item label="难度">
+                        <el-input v-model="pCurrentQuestion.difficulty"></el-input>
+                    </el-form-item>
+                    <el-form-item label="详情" >
+                        <div v-if="pCurrentQuestion.type < 3">
+                            <div  v-for="(item,index) in pCurrentQuestion.detail" :key="index">
+                                <el-input v-model="item.choosedContent"></el-input>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <el-input v-model="pCurrentQuestion.detail[0].choosedContent"></el-input>
+                        </div>
+                    </el-form-item>
+                </el-form>
+                <div class="dialog-footer">
+                    <el-button @click="pDetailShow = false">取 消</el-button>
+                    <el-button type="primary" @click="saveDetailModify">保 存</el-button>
+                </div>
+            </el-dialog>
+
             <el-dialog title="组卷规则" v-model="ruleShow">
                 <el-form :model="rule">
 <!--                    <el-input label="单选题" v-model="rule.singleScore"/>-->
@@ -251,9 +302,15 @@ export default {
 
             //查询列表的数组
             queryList:[],
-            //详情弹窗以及对应展示标识
+            //查询试题详情弹窗以及对应展示标识
             currentQuestion: {},
             detailShow:false,
+            //试卷中试题的详情弹窗以及对应展示标识 和位置
+            pCurrentQuestion: {},
+            pDetailIndex: '',
+            pDetailShow:false,
+            //保存当前数据
+            questionTemp: {},
             //规则弹窗
             ruleShow: false,
             questionModel: {
@@ -285,7 +342,7 @@ export default {
                 paperName: '',
                 totalScore: '',
                 questionList: [],
-                difficulty: []
+                difficulty: ''
             },
             //试卷中的每个题型对应数组
             singleList:[],
@@ -353,6 +410,29 @@ export default {
             this.currentQuestion = this.queryList[index]
             this.detailShow = true
         },
+        showpDetail(item) {
+            // console.log(item)
+            this.pDetailShow = true
+            this.pCurrentQuestion = item
+            // this.pCurrentQuestion
+        },
+        saveDetailModify() {
+            this.pDetailShow  = false
+            let item = this.pCurrentQuestion
+            this.deleteQuestion(item)
+            //
+            if (item.type === 1) {
+                this.singleList.push(item)
+            } else if (item.type === 2) {
+                this.multiList.push(item)
+            } else if (item.type === 3) {
+                this.blankList.push(item)
+            } else if (item.type === 4) {
+                this.shortQuestionList.push(item)
+            } else if (item.type === 5) {
+                this.questionList.push(item)
+            }
+        },
         showRule(){
             this.ruleShow = true
         },
@@ -379,6 +459,7 @@ export default {
                 this.queryList = response.data.data
             ))
         },
+        //TODO
         //调整试卷中各个题型的顺序
         upQuestion (type,index) {
             if (index === 0) {
@@ -404,16 +485,56 @@ export default {
             this.das[index] = this.das[index + 1]
             this.das[index + 1] = temp
         },
-        deleteQuestion (type,index) {
-            this.das.splice(index, 1)
+        deleteQuestion (item) {
+            if (item.type === 1) {
+                for(let i = 0; i <this.singleList.length; i++){
+                    if(this.singleList[i].questionId === item.questionId){
+                        this.singleList.splice(i, 1)
+                    }
+                }
+            } else if (item.type === 2) {
+                this.multiList.push(item)
+                for(let i = 0; i <this.multiList.length; i++){
+                    if(this.multiList[i].questionId === item.questionId){
+                        this.multiList.splice(i, 1)
+                    }
+                }
+            } else if (item.type === 3) {
+                this.blankList.push(item)
+                for(let i = 0; i <this.blankList.length; i++){
+                    if(this.blankList[i].questionId === item.questionId){
+                        this.blankList.splice(i, 1)
+                    }
+                }
+            } else if (item.type === 4) {
+                this.shortQuestionList.push(item)
+                for(let i = 0; i <this.shortQuestionList.length; i++){
+                    if(this.shortQuestionList[i].questionId === item.questionId){
+                        this.shortQuestionList.splice(i, 1)
+                    }
+                }
+            } else if (item.type === 5) {
+                this.questionList.push(item)
+                for(let i = 0; i <this.questionList.length; i++){
+                    if(this.questionList[i].questionId === item.questionId){
+                        this.questionList.splice(i, 1)
+                    }
+                }
+            }
+        },
+        replaceQuestion (item) {
+            this.questionModel.subject = item.subjectId
+            this.questionModel.chapter = item.chapterId
+            this.questionModel.type = item.type
+            this.commitForm()
         },
         //添加试题到试卷
         addQuestion(index){
             // eslint-disable-next-line no-debugger
             // debugger
-            console.log(this.queryList[index].type)
-            console.log(this.singleList)
-            console.log(this.queryList)
+            // console.log(this.queryList[index].type)
+            // console.log(this.singleList)
+            // console.log(this.queryList)
             console.log('begin')
             switch (this.queryList[index].type){
                 case 1:
@@ -452,6 +573,25 @@ export default {
                 }
                 i++
             }
+        },
+        //保存试卷信息
+        savePaper (){
+            this.paper.questionList = [].concat(this.singleList).concat(this.multiList).concat(this.blankList).concat(this.shortQuestionList).concat(this.questionList)
+            this.paper.difficulty = this.actualDifficulty
+            this.paper.totalScore = this.paperCount
+            if(this.paper.questionList.length < 1){
+                alert('试卷无数据')
+                return
+            }
+            axios.post('http://localhost:8080/paper/savePaper', this.paper).then(response => (
+                console.log('save success' + response)
+            ))
+            this.$router.push({
+                path: '/paper2word',
+                query: {
+                    paperData: encodeURIComponent(JSON.stringify(this.paper.questionList))
+                }
+            })
         },
     },
 

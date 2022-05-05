@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="save2Word">生成数据</button>
+    <el-button @click="save2Word">生成数据</el-button>
     <preview :wordFile="this.blobFile" v-if="isPreview"></preview>
   </div>
 </template>
@@ -31,6 +31,43 @@ export default {
       multiList: [],
       shortQuestionList: [],
       questionList: [],
+      subjectList: [
+        {
+          'selectLabel': '数据库概述',
+          'selectKey': '1',
+          'selectValue': '1'
+        },
+        {
+          'selectLabel': '数据模型',
+          'selectKey': '2',
+          'selectValue': '2'
+        },
+        {
+          'selectLabel': '关系数据库',
+          'selectKey': '3',
+          'selectValue': '3'
+        },
+        {
+          'selectLabel': 'SQL语言基础',
+          'selectKey': '4',
+          'selectValue': '4'
+        },
+        {
+          'selectLabel': 'SQL数据操作',
+          'selectKey': '5',
+          'selectValue': '5'
+        },
+        {
+          'selectLabel': '索引和视图',
+          'selectKey': '6',
+          'selectValue': '6'
+        },
+        {
+          'selectLabel': '触发器和存储过程',
+          'selectKey': '7',
+          'selectValue': '7'
+        }
+      ],
       urlHeader: 'http://localhost:8080/question/'
     }
   },

@@ -84,8 +84,8 @@
                 <div class="title">
                   <h3>选项设置</h3>
                   <div class="numButton">
-                    <button @click="addOption">新增选项</button>
-                    <button @click="delOption">删除选项</button>
+                    <el-button @click="addOption">新增选项</el-button>
+                    <el-button @click="delOption">删除选项</el-button>
                   </div>
                 </div>
                 <div v-for="(item, index) in this.form.options" :key="index">

@@ -1,61 +1,43 @@
 <template>
   <div>
-    <div class="input-box">
-    <div class="input-text">单选题数量</div>
-      <div class="input-content">
-        <el-input v-model="rule.singleNum"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">分值</div>
-      <div class="input-content">
-        <el-input  v-model="rule.singleScore"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">多选题数量</div>
-      <div class="input-content">
-        <el-input  v-model="rule.multiNum"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">分值</div>
-      <div class="input-content">
-        <el-input  v-model="rule.multiScore"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">填空题数量</div>
-      <div class="input-content">
-        <el-input  v-model="rule.completeNum"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">分值</div>
-      <div class="input-content">
-        <el-input  v-model="rule.completeScore"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">简答题数量</div>
-      <div class="input-content">
-        <el-input  v-model="rule.subjectiveNum" style="display: inline; width: fit-content"/>
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-text">分值</div>
-      <div class="input-content">
-        <el-input  v-model="rule.subjectiveScore"/>
-      </div>
-    </div>
-    <div class="input-text">试题期望难度</div>
-    <div class="input-content">
-      <el-input  v-model="rule.difficulty"/>
-    </div>
-    <button @click="getSmartPaper">自动组卷</button>
-    <button @click="jump2Preview">试卷预览</button>
-      <button @click="manualGenerate">调整试卷</button>
-      <button @click="savePaper">保存试卷信息</button>
+      <el-form inline>
+          <el-form-item label="单选题数量">
+              <el-input label="1" v-model="rule.singleNum"></el-input>
+          </el-form-item>
+          <el-form-item label="单选题分值">
+              <el-input label="2" v-model="rule.singleScore"></el-input>
+          </el-form-item>
+          <el-form-item label="多选题数量">
+              <el-input label="3" v-model="rule.multiNum"></el-input>
+          </el-form-item>
+          <el-form-item label="多选题分值">
+              <el-input label="4" v-model="rule.multiScore"></el-input>
+          </el-form-item>
+          <el-form-item label="填空题数量">
+              <el-input label="5" v-model="rule.completeNum"></el-input>
+          </el-form-item>
+          <el-form-item label="填空题分值">
+              <el-input label="6" v-model="rule.completeScore"></el-input>
+          </el-form-item>
+          <el-form-item label="简答题数量">
+              <el-input label="7" v-model="rule.subjectiveNum"></el-input>
+          </el-form-item>
+          <el-form-item label="简答题分值">
+              <el-input label="8" v-model="rule.subjectiveScore"></el-input>
+          </el-form-item>
+          <el-form-item label="试题期望难度">
+              <el-input label="9" v-model="rule.difficulty"></el-input>
+          </el-form-item>
+          <el-button @click="getSmartPaper">自动组卷</el-button>
+          <el-button @click="jump2Preview" >试卷预览</el-button>
+          <el-button @click="manualGenerate">调整试卷</el-button>
+          <el-button @click="savePaper">保存试卷信息</el-button>
+      </el-form>
+
+<!--    <button @click="getSmartPaper">自动组卷</button>-->
+<!--    <button @click="jump2Preview">试卷预览</button>-->
+<!--      <button @click="manualGenerate">调整试卷</button>-->
+<!--      <button @click="savePaper">保存试卷信息</button>-->
 <!--    <div v-if="this.das.length > 0" style="padding: 5px; border: solid; border-radius: 5px">-->
 <!--      <table v-for="(item,index) in this.das" :item="item" :key="index">-->
 <!--        <tr>-->

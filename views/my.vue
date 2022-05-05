@@ -11,20 +11,21 @@
 <!--            <el-form-item>-->
 <!--                <el-button type="primary" v-on:click="onSubmit('loginForm')">登录</el-button>-->
 <!--            </el-form-item>-->
-            <el-form-item label="注册账号" prop="username">
-                <el-input type="text" placeholder="请输入账号" v-model="form.username"/>
-            </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input type="password" placeholder="请输入密码" v-model="form.password"/>
-            </el-form-item>
-            <el-form-item label="确认密码" prop="password">
-                <el-input type="password" placeholder="请输入密码" v-model="form.password"/>
-            </el-form-item>
-            <el-form-item>
-                <span style="align-items: center">
-                <el-button type="primary" v-on:click="onSubmit('loginForm')">注册</el-button>
-                </span>
-            </el-form-item>
+
+<!--            <el-form-item label="注册账号" prop="username">-->
+<!--                <el-input type="text" placeholder="请输入账号" v-model="form.username"/>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="密码" prop="password">-->
+<!--                <el-input type="password" placeholder="请输入密码" v-model="form.password"/>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item label="确认密码" prop="password">-->
+<!--                <el-input type="password" placeholder="请输入密码" v-model="form.password"/>-->
+<!--            </el-form-item>-->
+<!--            <el-form-item>-->
+<!--                <span style="align-items: center">-->
+<!--                <el-button type="primary" v-on:click="onSubmit('loginForm')">注册</el-button>-->
+<!--                </span>-->
+<!--            </el-form-item>-->
         </el-form>
 
         <el-dialog

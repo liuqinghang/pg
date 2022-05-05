@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="goPreview">点击预览word文件</button>
-    <button @click="downLoad">点击下载word文件</button>
+    <el-button @click="goPreview">点击预览word文件</el-button>
+    <el-button @click="downLoad">点击下载word文件</el-button>
     <div class="docWrap">
       <!-- 预览文件的地方（用于渲染） -->
       <div ref="file"></div>
@@ -19,8 +19,10 @@ let docx = require('docx-preview')
 
 export default {
   props: {
-      // eslint-disable-next-line vue/require-prop-type-constructor
-    wordFile: ''
+    wordFile: {
+        type: Blob,
+        default : null
+    }
   },
   data: function () {
     return {
@@ -75,6 +77,7 @@ export default {
 </script>
 <style>
   .docWrap {
+    heigth: 400px;
     overflow: auto;
   }
 </style>
