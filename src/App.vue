@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="common-layout">
+        <el-container style="height: 100%">
+            <el-aside width="auto">
+            </el-aside>
+            <el-container>
+                <el-header>
+                    <CommonAside></CommonAside>
+                </el-header>
+                <el-main>
+                    <router-view></router-view>
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import CommonAside from "../views/common/CommonAside";
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+      CommonAside
+  },
+    methods:{
+
+    }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less" scoped>
+
+
+
+.el-header{
+  background: #5cee9d;
+}
+.el-mian{
+  padding: 0;
 }
 </style>
