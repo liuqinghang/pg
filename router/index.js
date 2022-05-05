@@ -1,13 +1,13 @@
 import * as VueRouter from 'vue-router'
 import Home from '@/../views/home'
 import My from '@/../views/my'
-import ViewQuestion from "../views/question/ViewQuestion";
-import SaveQuestion from "../views/question/SaveQuestion";
+import ViewQuestion from '../views/question/ViewQuestion';
+import SaveQuestion from '../views/question/SaveQuestion';
 
-import AutoGenerate from "../views/generate/AutoGenerate";
-import ManualGenerate from "../views/generate/ManualGenerate"
+import AutoGenerate from '../views/generate/AutoGenerate';
+import ManualGenerate from '../views/generate/ManualGenerate'
 
-import FinalPaper from "../views/paper/FinalPaper";
+import FinalPaper from '../views/paper/FinalPaper';
 const routes = [
     {
         path:'/',

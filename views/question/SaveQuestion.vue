@@ -90,7 +90,7 @@
                 </div>
                 <div v-for="(item, index) in this.form.options" :key="index">
                   <span>选项{{index+1}}:</span>
-                  <input v-model="form.options[index]">
+                  <el-input v-model="form.options[index]"/>
                 </div>
               </div>
               <div v-else>

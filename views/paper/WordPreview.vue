@@ -19,6 +19,7 @@ let docx = require('docx-preview')
 
 export default {
   props: {
+      // eslint-disable-next-line vue/require-prop-type-constructor
     wordFile: ''
   },
   data: function () {

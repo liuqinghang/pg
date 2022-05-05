@@ -3,54 +3,54 @@
     <div class="input-box">
     <div class="input-text">单选题数量</div>
       <div class="input-content">
-        <input v-model="rule.singleNum">
+        <el-input v-model="rule.singleNum"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.singleScore">
+        <el-input  v-model="rule.singleScore"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">多选题数量</div>
       <div class="input-content">
-        <input v-model="rule.multiNum">
+        <el-input  v-model="rule.multiNum"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.multiScore">
+        <el-input  v-model="rule.multiScore"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">填空题数量</div>
       <div class="input-content">
-        <input v-model="rule.completeNum">
+        <el-input  v-model="rule.completeNum"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.completeScore">
+        <el-input  v-model="rule.completeScore"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">简答题数量</div>
       <div class="input-content">
-        <input v-model="rule.subjectiveNum" style="display: inline; width: fit-content">
+        <el-input  v-model="rule.subjectiveNum" style="display: inline; width: fit-content"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.subjectiveScore">
+        <el-input  v-model="rule.subjectiveScore"/>
       </div>
     </div>
     <div class="input-text">试题期望难度</div>
     <div class="input-content">
-      <input v-model="rule.difficulty">
+      <el-input  v-model="rule.difficulty"/>
     </div>
     <button @click="getSmartPaper">自动组卷</button>
     <button @click="jump2Preview">试卷预览</button>
