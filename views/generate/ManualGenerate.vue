@@ -317,8 +317,8 @@ export default {
     },
     computed:{
         paperCount: function (){
-            let sum = this.rule.singleScore * this.singleList.length + this.rule.multiScore * this.multiList.length + this.rule.blankScore * this.blankList.length + this.rule.shortQuestionScore * this.shortQuestionList.length + this.rule.questionScore * this.questionList.length
-            return sum
+            return this.rule.singleScore * this.singleList.length + this.rule.multiScore * this.multiList.length + this.rule.blankScore * this.blankList.length + this.rule.shortQuestionScore * this.shortQuestionList.length + this.rule.questionScore * this.questionList.length
+
         },
         actualDifficulty: function (){
             let _difficulty = 0
@@ -491,12 +491,12 @@ export default {
 
     }
 
-    .head {
-        height: 40px;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-    }
+    /*.head {*/
+    /*    height: 40px;*/
+    /*    top: 0px;*/
+    /*    left: 0px;*/
+    /*    width: 100%;*/
+    /*}*/
 
     .input-box {
         width: 32%;

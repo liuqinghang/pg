@@ -35,9 +35,6 @@ export default {
       res: ''
     }
   },
-  beforeCreate () {
-    console.log()
-  },
   created: function () {
   },
   methods: {

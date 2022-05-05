@@ -3,54 +3,54 @@
     <div class="input-box">
     <div class="input-text">单选题数量</div>
       <div class="input-content">
-        <input v-model="rule.singleNum">
+        <el-input v-model="rule.singleNum"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.singleScore">
+        <el-input  v-model="rule.singleScore"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">多选题数量</div>
       <div class="input-content">
-        <input v-model="rule.multiNum">
+        <el-input  v-model="rule.multiNum"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.multiScore">
+        <el-input  v-model="rule.multiScore"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">填空题数量</div>
       <div class="input-content">
-        <input v-model="rule.completeNum">
+        <el-input  v-model="rule.completeNum"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.completeScore">
+        <el-input  v-model="rule.completeScore"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">简答题数量</div>
       <div class="input-content">
-        <input v-model="rule.subjectiveNum" style="display: inline; width: fit-content">
+        <el-input  v-model="rule.subjectiveNum" style="display: inline; width: fit-content"/>
       </div>
     </div>
     <div class="input-box">
       <div class="input-text">分值</div>
       <div class="input-content">
-        <input v-model="rule.subjectiveScore">
+        <el-input  v-model="rule.subjectiveScore"/>
       </div>
     </div>
     <div class="input-text">试题期望难度</div>
     <div class="input-content">
-      <input v-model="rule.difficulty">
+      <el-input  v-model="rule.difficulty"/>
     </div>
     <button @click="getSmartPaper">自动组卷</button>
     <button @click="jump2Preview">试卷预览</button>
@@ -82,8 +82,8 @@
 <!--                             show-score disabled text-color="#ff9900"></el-rate>-->
 <!--                </template>-->
             </el-table-column>
-            <el-table-column label="详情">
-                <template v-slot="scope" width="40">
+            <el-table-column label="详情" width="40">
+                <template v-slot="scope" >
                     <el-button @click="showDetail(scope.$index)" type="text">详情</el-button>
                 </template>
             </el-table-column>
@@ -215,7 +215,7 @@ export default {
     },
     // resort question after got question
     sortQuestion () {
-      for (var i = 1; i < this.das.length;) {
+      for (let i = 1; i < this.das.length;) {
         if (this.das[i].type < this.das[i - 1].type) {
           this.upQuestion(i)
         } else {
@@ -279,8 +279,6 @@ export default {
 <style scoped>
 .input-box{
     width: 24%;
-    padding-top: 20px;
-    padding: 5px;
     border-radius: 2px;
     float: left;
 }
@@ -295,14 +293,6 @@ export default {
     float: left;
 }
 
-.content{
-  width: 40px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.inline_button{
-    with: 40px;
-}
+
 
 </style>
