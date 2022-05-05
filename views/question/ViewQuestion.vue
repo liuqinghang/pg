@@ -216,17 +216,9 @@ export default {
 
   }
 
-  .head {
-    height: 40px;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-  }
 
   .input-box {
     width: 32%;
-    padding-top: 20px;
-    padding: 5px;
     border-radius: 2px;
     float: left;
   }

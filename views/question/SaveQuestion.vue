@@ -80,7 +80,7 @@
       <el-button @click="saveQuestion">录入试题</el-button>
         <span style="display: inline; padding-left: 50px">试题详情</span>
         <div>
-              <div v-if="questionModel.type == 1 || questionModel.type == 2" style="background: #ffffff">
+              <div v-if="Number(questionModel.type) == 1 || Number(questionModel.type) == 2" style="background: #ffffff">
                 <div class="title">
                   <h3>选项设置</h3>
                   <div class="numButton">
@@ -185,7 +185,7 @@ export default {
     },
     // commit question content
     saveQuestion () {
-      var model = this.questionModel
+      let model = this.questionModel
       if (model.type === undefined || model.type === '') {
         alert('未选择试题类型')
         return
@@ -204,8 +204,8 @@ export default {
       }
       // 选择题
       if (model.type === '1' || model.type === '2') {
-        for (var i = 0; i < this.form.options.length; i++) {
-          if (this.form.options[i] === null || this.form.options[i] === '') {
+        for (let i = 0; i < this.form.options.length; i++) {
+          if (this.form.options[i] === undefined || this.form.options[i] === '') {
             alert('试题选项未填写')
             return
           }
@@ -295,18 +295,8 @@ export default {
         padding: 2px;
 
     }
-
-    .head {
-        height: 40px;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-    }
-
     .input-box {
         width: 32%;
-        padding-top: 20px;
-        padding: 5px;
         border-radius: 2px;
         float: left;
     }

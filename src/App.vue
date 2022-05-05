@@ -35,7 +35,7 @@ export default {
 .el-header{
   background: #5cee9d;
 }
-.el-mian{
+.el-main{
   padding: 0;
 }
 </style>

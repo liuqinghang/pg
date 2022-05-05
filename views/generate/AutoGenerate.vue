@@ -82,8 +82,8 @@
 <!--                             show-score disabled text-color="#ff9900"></el-rate>-->
 <!--                </template>-->
             </el-table-column>
-            <el-table-column label="详情">
-                <template v-slot="scope" width="40">
+            <el-table-column label="详情" width="40">
+                <template v-slot="scope" >
                     <el-button @click="showDetail(scope.$index)" type="text">详情</el-button>
                 </template>
             </el-table-column>
@@ -215,7 +215,7 @@ export default {
     },
     // resort question after got question
     sortQuestion () {
-      for (var i = 1; i < this.das.length;) {
+      for (let i = 1; i < this.das.length;) {
         if (this.das[i].type < this.das[i - 1].type) {
           this.upQuestion(i)
         } else {
@@ -279,8 +279,6 @@ export default {
 <style scoped>
 .input-box{
     width: 24%;
-    padding-top: 20px;
-    padding: 5px;
     border-radius: 2px;
     float: left;
 }
@@ -295,14 +293,6 @@ export default {
     float: left;
 }
 
-.content{
-  width: 40px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.inline_button{
-    with: 40px;
-}
+
 
 </style>
